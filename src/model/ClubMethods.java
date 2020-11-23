@@ -4,7 +4,7 @@ public interface ClubMethods{
 	
 	public void fireEmployee(int index, String id);
 	
-	public int biosecurity(int rows, int colums);
+	//public int biosecurity(int rows, int colums);
 	
 	public void hirePlayer(int index, String name, String id, double salary,int shirtNumber, int goalsScored, double averageRating, String position);
 	

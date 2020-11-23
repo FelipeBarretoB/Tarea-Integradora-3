@@ -124,4 +124,16 @@ public class Team{
 		
 	}
 	
+	public Coach getAssistant(int index){
+		return assistantCoach[index];
+	}
+	
+	public Player getPlayer(int index){
+		return player[index];
+	}
+	
+	public Principal getPrincipal(){
+		return principal; 
+	}
+	
 }

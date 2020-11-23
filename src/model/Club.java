@@ -9,7 +9,11 @@ public class Club implements ClubMethods{
 	private Team[] team;
 	private Player[][] dressingRoom1;
 	private Player[][] dressingRoom2;
+	private Player[][] dressingRoom3;
+	private Player[][] dressingRoom4;
 	private Coach[][] office;
+	private Coach[][] office2;
+
 	
 	public Club(String name, int id, String creationDate, String nameA, String nameB){
 		this.name=name;
@@ -18,7 +22,10 @@ public class Club implements ClubMethods{
 		team= new Team[] {new Team(nameA),new Team(nameB)};
 		dressingRoom1=new Player[7][7];
 		dressingRoom2=new Player[7][6];
+		dressingRoom3=new Player[7][7];
+		dressingRoom4=new Player[7][6];
 		office=new Coach[6][6];
+		office2=new Coach[6][6];
 		
 	}
 	
@@ -32,11 +39,52 @@ public class Club implements ClubMethods{
 		team[index].fireEmployee(id);
 	}
 	
-	public int biosecurity(int rows, int colums){
+	public void biosecurity(){
+		int index=0;
+		for(int c=0;c<dressingRoom1.length && c%2==0;c++){
+			for(int i=0;c<dressingRoom1[c].length && c%2==0;i++){
+				dressingRoom1[c][i]=team[0].getPlayer(index);
+				index++;
+			}
+		}
+		for(int c=0;c<dressingRoom2.length && c%2==0;c++){
+			for(int i=0;c<dressingRoom2[c].length && c%2==0;i++){
+				dressingRoom2[c][i]=team[0].getPlayer(index);
+				index++;
+			}
+		}
+		index=0;
+		office[0][0]=team[0].getPrincipal();
+		for(int c=1;c<office.length && c%2==0;c++){
+			for(int i=1;c<office[c].length && c%2==0;i++){
+				office[c][i]=team[0].getAssistant(index);
+				index++;
+			}
+		}
 		
-		return 5;
+		index=0;
+		for(int c=0;c<dressingRoom3.length && c%2==0;c++){
+			for(int i=0;c<dressingRoom3[c].length && c%2==0;i++){
+				dressingRoom3[c][i]=team[1].getPlayer(index);
+				index++;
+			}
+		}
+		for(int c=0;c<dressingRoom4.length && c%2==0;c++){
+			for(int i=0;c<dressingRoom4[c].length && c%2==0;i++){
+				dressingRoom4[c][i]=team[1].getPlayer(index);
+				index++;
+			}
+		}
+		index=0;
+		office2[0][0]=team[1].getPrincipal();
+		for(int c=1;c<office2.length && c%2==0;c++){
+			for(int i=1;c<office2[c].length && c%2==0;i++){
+				office2[c][i]=team[1].getAssistant(index);
+				index++;
+			}
+		}
 		
-	}
+	}          
 	
 	
 	public boolean checkId(int index,String id){
@@ -86,11 +134,17 @@ public class Club implements ClubMethods{
 	
 	public void addLineUp(Team team){}
 	
+
+	
 	
 	public String showInfo(){
-		return "pain";
+		String print="";
+		showEmployee();
+		print+="\n Vestieres \n";
 		
 		
+		
+		return print;
 	}
 	
 	
