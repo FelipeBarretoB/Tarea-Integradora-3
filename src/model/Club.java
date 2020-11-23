@@ -6,8 +6,6 @@ public class Club implements ClubMethods{
 	private String name;
 	private int id;
 	private String creationDate;
-	private Team a;
-	private Team b; 
 	private Team[] team;
 	private Player[][] dressingRoom1;
 	private Player[][] dressingRoom2;
@@ -17,8 +15,6 @@ public class Club implements ClubMethods{
 		this.name=name;
 		this.id=id;
 		this.creationDate=creationDate;
-		a =new Team(nameA);
-		b =new Team(nameB);
 		team= new Team[] {new Team(nameA),new Team(nameB)};
 		dressingRoom1=new Player[7][7];
 		dressingRoom2=new Player[7][6];
@@ -31,10 +27,9 @@ public class Club implements ClubMethods{
 		"(2) "+team[1].getTeamName()+"\n";
 	}
 	
-	public void fireEmployee(int index){
-		
-		
-		
+	
+	public void fireEmployee(int index,String id){
+		team[index].fireEmployee(id);
 	}
 	
 	public int biosecurity(int rows, int colums){
@@ -43,11 +38,6 @@ public class Club implements ClubMethods{
 		
 	}
 	
-	
-	
-	public String getTeamsName(){
-		return a.getTeamName()+" "+b.getTeamName();
-	}
 	
 	public boolean checkId(int index,String id){
 		return team[index].checkId(id);
@@ -65,29 +55,33 @@ public class Club implements ClubMethods{
 		team[index].addAssistanCoach( name,  id,  salary,  yearsOfExperience, hasBeenPlayer,  skill);
 	}
 	
-	public void addPlayerToTeam(String teamName, Player player){
+	public String showEmployee(){
+		String print="";
+		print+=team[0].teamToString()+"\n";
+		
+		
+		print+=team[1].teamToString()+"\n";
+		return print;
+	}
+	
+
+	
+	public boolean hasPlayerSpace(int index){
+		return team[index].hasPlayerSpace();
+		
 		
 	}
 	
-	public void addCoachOrAssitantToTeam(String teamName,Coach coach){
-		
+	public boolean hasCoachSpace(int index){
+		return team[index].hasAssistantSpace();		
 	}
 	
-	public void hasPlayerSpace(){
-		
-		
-		
+	public boolean hasPrincipalSpace(int index){
+		return team[index].hasPrincipalSpace();
 	}
 	
-	public void hasCoachSpace(){
-		
-		
-	}
-	
-	public void findEmployee(String name){
-		
-		
-		
+	public void findEmployee(String id, int index){
+		team[index].fireEmployee(id);
 	}
 	
 	public void addLineUp(Team team){}

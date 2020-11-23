@@ -11,5 +11,11 @@ public class Assistant extends Coach{
 		
 	}
 	
+	@Override
+	public String employeeToString(){
+		return super.employeeToString()+
+		"ha sido jugador: "+hasBeenPlayer+"\n"+
+		"Experiencia en: "+skill.name()+"\n";
+	}
 	
 }

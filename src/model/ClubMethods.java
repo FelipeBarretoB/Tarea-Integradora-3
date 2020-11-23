@@ -2,27 +2,28 @@ package model;
 
 public interface ClubMethods{
 	
-	public void fireEmployee(int index);
+	public void fireEmployee(int index, String id);
 	
 	public int biosecurity(int rows, int colums);
 	
 	public void hirePlayer(int index, String name, String id, double salary,int shirtNumber, int goalsScored, double averageRating, String position);
 	
-	public String getTeamsName();
+	public String showEmployee();
+	
+	
 	
 	public void hirePrincipalCoach(int index, String name, String id, double salary, int yearsOfExperience,int numberOfTeamsInCharge,int championshipsWon);
 	
 	public void hireAssistantCoach(int index, String name, String id, double salary, int yearsOfExperience,boolean hasBeenPlayer, String skill);
 	
-	public void addPlayerToTeam(String teamName, Player player);
 	
-	public void addCoachOrAssitantToTeam(String teamName,Coach coach);
+	public boolean hasPlayerSpace(int index);
 	
-	public void hasPlayerSpace();
+	public boolean hasCoachSpace(int index);
 	
-	public void hasCoachSpace();
+	public boolean hasPrincipalSpace(int index);
 	
-	public void findEmployee(String name);
+	public void findEmployee(String id, int team);
 	
 	public void addLineUp(Team team);
 	

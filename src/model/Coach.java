@@ -8,5 +8,17 @@ public abstract class Coach extends Employee{
 		this.yearsOfExperience=yearsOfExperience;
 	}
 	
+	@Override
+	public String employeeToString(){
+		String print=super.employeeToString()+
+		"Años de experiencia: "+yearsOfExperience+"\n";
+		return print;
+	}
+	
+	public int getYearsOfExperience(){
+		return yearsOfExperience;
+	}
+
+	
 }
 	

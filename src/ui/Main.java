@@ -33,8 +33,8 @@ public class Main{
 		System.out.println(
 				"Menú principal, seleccione una opción\n" +
 				"(1) Para contratar un empleado \n" +
-				"(2) Para mostrar usuarios \n"+
-				"(3) Para compartir una cancion \n"+
+				"(2) Para mostrar los equipos \n"+
+				"(3) Para para despedir un empleado\n"+
 				"(4) Para mostrar las canciones compartidas \n" +
 				"(5) Para crear una playList \n" + 
 				"(6) Para añadir cancion a la playlist \n" +  
@@ -60,13 +60,13 @@ public class Main{
 			break;
 		case 2:
 			System.out.println("\n");
-		
+			System.out.println(club.showEmployee());
 			System.out.println("\n");
 			break;
 	
 		case 3:
 			System.out.println("\n");
-		
+			fireEmployeeInfo();
 			System.out.println("\n");
 			break;
 
@@ -149,31 +149,34 @@ public class Main{
 		System.out.println(club.printTeamNames());
 		int index=sc.nextInt();
 		sc.nextLine();
-	
-		System.out.println("Cual es el nombre del jugador?");
-		String name= sc.nextLine();
-		System.out.println("Cual es el id del jugador?");
-		String id=sc.nextLine();
-		if(!club.checkId(index-1,id)){
-			System.out.println("cual es el salario del jugador?");
-			double salary=sc.nextDouble();
-			sc.nextLine();
-			System.out.println("Cual es el numero de la camisata del usuario?");
-			int shirtNumber=sc.nextInt();
-			sc.nextLine();
-			System.out.println("Cuantos goles a anotado el jugador?");
-			int goalsScored=sc.nextInt();
-			sc.nextLine();
-			System.out.println("Cual es el puntaje promedio del jugador?");
-			double averageRating=sc.nextDouble();
-			sc.nextLine();
-			System.out.println("Cual es la posicion del jugador?");
-			String position=sc.nextLine();
-			club.hirePlayer( index-1,  name,  id,  salary, shirtNumber,  goalsScored,  averageRating,  position);	
-		}else{
-			System.out.println("Ya hay un empleado con esta id"); 
-		}
-		
+		if(index<=1){
+			if(club.hasPlayerSpace(index)){
+				System.out.println("Cual es el nombre del jugador?");
+				String name= sc.nextLine();
+				System.out.println("Cual es el id del jugador?");
+				String id=sc.nextLine();
+				if(!club.checkId(index-1,id)){
+					System.out.println("cual es el salario del jugador?");
+					double salary=sc.nextDouble();
+					sc.nextLine();
+					System.out.println("Cual es el numero de la camisata del usuario?");
+					int shirtNumber=sc.nextInt();
+					sc.nextLine();
+					System.out.println("Cuantos goles a anotado el jugador?");
+					int goalsScored=sc.nextInt();
+					sc.nextLine();
+					System.out.println("Cual es el puntaje promedio del jugador?");
+					double averageRating=sc.nextDouble();
+					sc.nextLine();
+					System.out.println("Cual es la posicion del jugador?");
+					String position=sc.nextLine();
+					club.hirePlayer( index-1,  name,  id,  salary, shirtNumber,  goalsScored,  averageRating,  position);	
+				}else
+					System.out.println("Ya hay un empleado con esta id"); 
+			}else
+				System.out.println("No hay espacio para más jugadores"); 
+		}else
+			System.out.println("Este equipo no es valido"); 
 		
 	}
 		
@@ -184,55 +187,82 @@ public class Main{
 		System.out.println(club.printTeamNames());
 		int index=sc.nextInt();
 		sc.nextLine();
-		System.out.println("Cual es el nombre del entrenador principal?");
-		String name= sc.nextLine();
-		System.out.println("Cual es el id del entrenador principal?");
-		String id=sc.nextLine();
-		if(!club.checkId(index-1,id)){
-			System.out.println("cual es el salario del entrenador principal?");
-			double salary=sc.nextDouble();
-			sc.nextLine();
-			System.out.println("Cuantos años de experiencia tiene el entrenador?");
-			int yearsOfExperience=sc.nextInt();
-			sc.nextLine();
-			System.out.println("De cuantos equipos esta a cargo?");
-			int numberOfTeamsInCharge=sc.nextInt();
-			sc.nextLine();
-			System.out.println("Cuantos campeonotas a ganado?");
-			int championshipsWon=sc.nextInt();
-			sc.nextLine();
-			club.hirePrincipalCoach( index-1,  name,  id,  salary,  yearsOfExperience, numberOfTeamsInCharge, championshipsWon);
-		}else{
-			System.out.println("Ya hay un empleado con esta id"); 
-		}
+		if(index<=1){
+			if(club.hasPrincipalSpace(index)){
+				System.out.println("Cual es el nombre del entrenador principal?");
+				String name= sc.nextLine();
+				System.out.println("Cual es el id del entrenador principal?");
+				String id=sc.nextLine();
+				if(!club.checkId(index-1,id)){
+					System.out.println("cual es el salario del entrenador principal?");
+					double salary=sc.nextDouble();
+					sc.nextLine();
+					System.out.println("Cuantos años de experiencia tiene el entrenador?");
+					int yearsOfExperience=sc.nextInt();
+					sc.nextLine();
+					System.out.println("De cuantos equipos esta a cargo?");
+					int numberOfTeamsInCharge=sc.nextInt();
+					sc.nextLine();
+					System.out.println("Cuantos campeonatos a ganado?");
+					int championshipsWon=sc.nextInt();
+					sc.nextLine();
+					club.hirePrincipalCoach( index-1,  name,  id,  salary,  yearsOfExperience, numberOfTeamsInCharge, championshipsWon);
+				}else
+					System.out.println("Ya hay un empleado con esta id"); 
+			}else
+				System.out.println("Ya hay entrenador principal"); 
+		}else
+			System.out.println("Este equipo no es valido"); 
 	}
 		
 		
 	public void hireAssistantInfo(){
-		System.out.println("A cual equipo le quieres añadir un entrenador principal?");
+		System.out.println("A cual equipo le quieres añadir un entrenador asistente?");
 		System.out.println(club.printTeamNames());
 		int index=sc.nextInt();
 		sc.nextLine();
-		System.out.println("Cual es el nombre del entrenador principal?");
-		String name= sc.nextLine();
-		System.out.println("Cual es el id del entrenador principal?");
-		String id=sc.nextLine();
-		if(!club.checkId(index-1,id)){
-			System.out.println("cual es el salario del entrenador principal?");
-			double salary=sc.nextDouble();
-			sc.nextLine();
-			System.out.println("Cuantos años de experiencia tiene el entrenador?");
-			int yearsOfExperience=sc.nextInt();
-			sc.nextLine();
-			System.out.println("A sido un jugador?");
-			boolean hasBeenPlayer=sc.nextBoolean();
-			sc.nextLine();
-			System.out.println("Que experiencia tiene el asistente?");
-			String skill=sc.nextLine();
-			club.hireAssistantCoach( index,  name, id ,  salary,  yearsOfExperience, hasBeenPlayer,  skill);
-		}else{
-			System.out.println("Ya hay un empleado con esta id"); 
-		}
+		if(index<=1){
+			if(club.hasCoachSpace(index)){
+				System.out.println("Cual es el nombre del entrenador asistente?");
+				String name= sc.nextLine();
+				System.out.println("Cual es el id del entrenador asistente?");
+				String id=sc.nextLine();
+				if(!club.checkId(index-1,id)){
+					System.out.println("cual es el salario del entrenador asistente?");
+					double salary=sc.nextDouble();
+					sc.nextLine();
+					System.out.println("Cuantos años de experiencia tiene el asistente?");
+					int yearsOfExperience=sc.nextInt();
+					sc.nextLine();
+					System.out.println("A sido un jugador?");
+					boolean hasBeenPlayer=sc.nextBoolean();
+					sc.nextLine();
+					System.out.println("Que experiencia tiene el asistente?");
+					String skill=sc.nextLine();
+					club.hireAssistantCoach( index-1,  name, id ,  salary,  yearsOfExperience, hasBeenPlayer,  skill);
+				}else
+					System.out.println("Ya hay un empleado con esta id"); 
+			}else
+				System.out.println("No hay más espacio para asistentes"); 
+		}else
+			System.out.println("Este equipo no es valido"); 
+		
+	}
+	
+	public void fireEmployeeInfo(){
+		System.out.println("A cual equipo pertenece el empleado que quieres despedir?");
+		System.out.println(club.printTeamNames());
+		int index=sc.nextInt();
+		sc.nextLine();
+		if(index<=1){
+			System.out.println("Cual es la id del empleado?");
+			String id=sc.nextLine();
+			if(club.checkId(index-1,id)){
+				club.fireEmployee(index-1, id);
+			}else 
+				System.out.println("No existe ningun empleado con esta id");
+		}else
+			System.out.println("Este equipo no es valido"); 
 	}
 }
 	

@@ -13,11 +13,21 @@ public abstract class Employee{
 		return name;
 	}
 	
+	public double getSalary(){
+		return salary;
+	}
+	
 	public Employee(String name, String id, double salary){
 		this.name=name;
 		this.id=id;
 		this.salary=salary;
 		
+	}
+	
+	public String employeeToString(){
+		return "Nombre: "+name+" \n"+
+		"ID: "+id+"\n"+
+		"Salario: "+salary+"\n";
 	}
 	
 }
