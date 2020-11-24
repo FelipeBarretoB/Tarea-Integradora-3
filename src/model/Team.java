@@ -2,7 +2,7 @@ package model;
 
 public class Team{
 	public static final int MAXPLAYERS=25;
-	public static final int MAXCOACHES=4;
+	public static final int MAXCOACHES=3;
 	private String teamName;
 	private LineUp lineUp;
 	private Principal principal;
@@ -91,9 +91,11 @@ public class Team{
 	
 	public void addPlayer(String name, String id, double salary,int shirtNumber, int goalsScored, double averageRating, String position){
 		boolean created=false;
-		for(int c=0;(c<player.length && player[c]==null)&&!created;c++){
-			player[c]=new Player(name,id,salary,shirtNumber,goalsScored,averageRating,Position.valueOf(position.toUpperCase()));
-			created=true;
+		for(int c=0;c<player.length&&!created;c++){
+			if(player[c]==null){
+				player[c]=new Player(name,id,salary,shirtNumber,goalsScored,averageRating,Position.valueOf(position.toUpperCase()));
+				created=true;
+			}
 		}
 	}
 	
@@ -103,9 +105,11 @@ public class Team{
 	
 	public void addAssistanCoach(String name, String id, double salary, int yearsOfExperience,boolean hasBeenPlayer, String skill){
 		boolean created=false;
-		for(int c=0;(c<assistantCoach.length && player[c]==null)&&!created;c++){
-			created=true;
-			assistantCoach[c]=new Assistant( name,  id,  salary,  yearsOfExperience, hasBeenPlayer, Skill.valueOf(skill.toUpperCase()));
+		for(int c=0;c<assistantCoach.length &&!created;c++){
+			if(assistantCoach==null){
+				created=true;
+				assistantCoach[c]=new Assistant( name,  id,  salary,  yearsOfExperience, hasBeenPlayer, Skill.valueOf(skill.toUpperCase()));
+			}
 		}
 	}
 	
@@ -134,6 +138,14 @@ public class Team{
 	
 	public Principal getPrincipal(){
 		return principal; 
+	}
+	
+	public int getMAXPLAYERS(){
+		return MAXPLAYERS;
+	}
+	
+	public int getMAXCOACHES(){
+		return MAXCOACHES;
 	}
 	
 }

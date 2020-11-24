@@ -7,7 +7,7 @@ public class Main{
 	
 	public Main(){
 		sc= new Scanner(System.in);
-		club=new Club("SuperClub",12341421,"20/03/200/","Equipo 1","Equipo 2");
+		club=new Club("SuperClub",12341421,"20/03/2000","Equipo 1","Equipo 2");
 	}
 	
 	public static void main(String [] args){
@@ -35,11 +35,11 @@ public class Main{
 				"(1) Para contratar un empleado \n" +
 				"(2) Para mostrar los equipos \n"+
 				"(3) Para para despedir un empleado\n"+
-				"(4) Para mostrar las canciones compartidas \n" +
-				"(5) Para crear una playList \n" + 
-				"(6) Para añadir cancion a la playlist \n" +  
-				"(7) Para darle calificación a una playlist \n" +  
-				"(8) Para mostrar playlist \n" +  
+				"(4) Para aplicar protocolos de bioseguridad \n" +
+				"(5) Para mostrar toda la información del club \n" + 
+				"(6)  \n" +  
+				"(7)  \n" +  
+				"(8)  \n" +  
 				"(0) Para salir"
 				);
 		option= sc.nextInt();
@@ -72,12 +72,12 @@ public class Main{
 
 		case 4:
 			System.out.println("\n");
-		
+			club.biosecurity();
 			System.out.println("\n");
 			break;
 		case 5:
 			System.out.println("\n");
-		
+			System.out.println(club.showInfo());
 			System.out.println("\n");
 			break;
 			
