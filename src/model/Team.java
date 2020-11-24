@@ -84,6 +84,31 @@ public class Team{
 		}
 	}
 	
+	public Employee findEmployee(String id){
+		boolean found=false;
+		Employee print=null;
+		for(int c=0;(c<player.length && player[c]!=null)&&!found;c++){
+			if(player[c].getId().equals(id)){
+				print=player[c];
+				found=true;
+			}
+		}
+		for(int c=0;(c<assistantCoach.length && assistantCoach[c]!=null)&&!found;c++){
+			if(assistantCoach[c].getId().equals(id)){
+				print=assistantCoach[c];
+				found=true;
+			}
+		}
+		
+		if(principal!=null && principal.getId().equals(id)){
+			print=principal;
+			found=true;
+		}
+		
+		return print;
+		
+	}
+	
 	
 	public String getTeamName(){
 		return teamName;

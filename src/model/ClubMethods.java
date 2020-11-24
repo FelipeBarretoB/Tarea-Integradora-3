@@ -2,7 +2,7 @@ package model;
 
 public interface ClubMethods{
 	
-	public void fireEmployee(int index, String id);
+	public void fireEmployee(String id);
 	
 	//public int biosecurity(int rows, int colums);
 	

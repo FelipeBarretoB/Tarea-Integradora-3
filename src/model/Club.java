@@ -33,11 +33,15 @@ public class Club implements ClubMethods{
 		return "(1) "+team[0].getTeamName()+" \n"+
 		"(2) "+team[1].getTeamName()+"\n";
 	}
+
 	
 	
-	public void fireEmployee(int index,String id){
-		team[index].fireEmployee(id);
+	public void fireEmployee(String id){
+		team[0].fireEmployee(id);
+		team[1].fireEmployee(id);
 	}
+	
+	
 	
 	public void biosecurity(){
 		
@@ -121,8 +125,8 @@ public class Club implements ClubMethods{
 	}          
 	
 	
-	public boolean checkId(int index,String id){
-		return team[index].checkId(id);
+	public boolean checkId(String id){
+		return team[0].checkId(id) || team[1].checkId(id);
 	}
 	
 	public void hirePlayer(int index, String name, String id, double salary,int shirtNumber, int goalsScored, double averageRating, String position){
@@ -146,6 +150,11 @@ public class Club implements ClubMethods{
 		return print;
 	}
 	
+	public String showEmployee(int index){
+		String print="";
+		print+=team[index].teamToString()+"\n";
+		return print;
+	}
 
 	
 	public boolean hasPlayerSpace(int index){
@@ -164,6 +173,16 @@ public class Club implements ClubMethods{
 	
 	public void findEmployee(String id, int index){
 		team[index].fireEmployee(id);
+	}
+	
+	public String findEmployee(String id){
+		String print="";
+		if(team[0].findEmployee(id)!=null)
+			print=team[0].findEmployee(id).employeeToString();
+		else
+			print=team[1].findEmployee(id).employeeToString();
+		return print;
+	
 	}
 	
 	public void addLineUp(Team team){}

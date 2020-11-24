@@ -37,8 +37,8 @@ public class Main{
 				"(3) Para para despedir un empleado\n"+
 				"(4) Para aplicar protocolos de bioseguridad \n" +
 				"(5) Para mostrar toda la información del club \n" + 
-				"(6)  \n" +  
-				"(7)  \n" +  
+				"(6) Para encontrar un empleado \n" +  
+				"(7) Para mostrar solo un equipo \n" +  
 				"(8)  \n" +  
 				"(0) Para salir"
 				);
@@ -83,12 +83,12 @@ public class Main{
 			
 		case 6:
 			System.out.println("\n");
-		
+			findEmployeeInfo();
 			System.out.println("\n");
 			break;
 		case 7:
 			System.out.println("\n");
-		
+			showTeamInfo();
 			System.out.println("\n");
 			break;
 		case 8:
@@ -149,13 +149,13 @@ public class Main{
 		System.out.println(club.printTeamNames());
 		int index=sc.nextInt();
 		sc.nextLine();
-		if(index<=1){
-			if(club.hasPlayerSpace(index)){
+		if(index-1<=1){
+			if(club.hasPlayerSpace(index-1)){
 				System.out.println("Cual es el nombre del jugador?");
 				String name= sc.nextLine();
 				System.out.println("Cual es el id del jugador?");
 				String id=sc.nextLine();
-				if(!club.checkId(index-1,id)){
+				if(!club.checkId(id)){
 					System.out.println("cual es el salario del jugador?");
 					double salary=sc.nextDouble();
 					sc.nextLine();
@@ -187,13 +187,13 @@ public class Main{
 		System.out.println(club.printTeamNames());
 		int index=sc.nextInt();
 		sc.nextLine();
-		if(index<=1){
-			if(club.hasPrincipalSpace(index)){
+		if(index-1<=1){
+			if(club.hasPrincipalSpace(index-1)){
 				System.out.println("Cual es el nombre del entrenador principal?");
 				String name= sc.nextLine();
 				System.out.println("Cual es el id del entrenador principal?");
 				String id=sc.nextLine();
-				if(!club.checkId(index-1,id)){
+				if(!club.checkId(id)){
 					System.out.println("cual es el salario del entrenador principal?");
 					double salary=sc.nextDouble();
 					sc.nextLine();
@@ -221,13 +221,13 @@ public class Main{
 		System.out.println(club.printTeamNames());
 		int index=sc.nextInt();
 		sc.nextLine();
-		if(index<=1){
-			if(club.hasCoachSpace(index)){
+		if(index-1<=1){
+			if(club.hasCoachSpace(index-1)){
 				System.out.println("Cual es el nombre del entrenador asistente?");
 				String name= sc.nextLine();
 				System.out.println("Cual es el id del entrenador asistente?");
 				String id=sc.nextLine();
-				if(!club.checkId(index-1,id)){
+				if(!club.checkId(id)){
 					System.out.println("cual es el salario del entrenador asistente?");
 					double salary=sc.nextDouble();
 					sc.nextLine();
@@ -250,18 +250,31 @@ public class Main{
 	}
 	
 	public void fireEmployeeInfo(){
-		System.out.println("A cual equipo pertenece el empleado que quieres despedir?");
+		System.out.println("Cual es la id del empleado?");
+		String id=sc.nextLine();
+		if(club.checkId(id)){
+			club.fireEmployee(id);
+		}else 
+			System.out.println("No existe ningun empleado con esta id");
+	}
+	
+	public void findEmployeeInfo(){
+		System.out.println("Cual es la id del empleado?");
+		String id=sc.nextLine();
+		if(club.checkId(id)){
+			System.out.println(club.findEmployee(id));
+		}else 
+			System.out.println("No existe ningun empleado con esta id");
+		
+	}
+	
+	public void showTeamInfo(){
 		System.out.println(club.printTeamNames());
 		int index=sc.nextInt();
 		sc.nextLine();
-		if(index<=1){
-			System.out.println("Cual es la id del empleado?");
-			String id=sc.nextLine();
-			if(club.checkId(index-1,id)){
-				club.fireEmployee(index-1, id);
-			}else 
-				System.out.println("No existe ningun empleado con esta id");
-		}else
+		if(index-1<=1)
+			System.out.println(club.showEmployee( index-1));
+		else
 			System.out.println("Este equipo no es valido"); 
 	}
 }
