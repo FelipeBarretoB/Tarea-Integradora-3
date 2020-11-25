@@ -1,8 +1,8 @@
 package model;
-
+import java.util.ArrayList;
 public class Club implements ClubMethods{
 	
-
+	private ArrayList <Employee> clubEmployees; 
 	private String name;
 	private int nit;
 	private String creationDate;
@@ -26,6 +26,7 @@ public class Club implements ClubMethods{
 		dressingRoom4=new Player[7][6];
 		office=new Coach[6][6];
 		office2=new Coach[6][6];
+		clubEmployees=new ArrayList <> ();
 		
 	}
 	
@@ -126,19 +127,29 @@ public class Club implements ClubMethods{
 	
 	
 	public boolean checkId(String id){
-		return team[0].checkId(id) || team[1].checkId(id);
+		boolean found= false;
+
+		for(int c=0;(c<clubEmployees.size()); c++){
+			if(clubEmployees!=null && clubEmployees.get(c).getId().equals(id))
+				 found=true; 	
+		}
+		return found;
+			
 	}
 	
 	public void hirePlayer(int index, String name, String id, double salary,int shirtNumber, int goalsScored, double averageRating, String position){
 		team[index].addPlayer(name,id,salary,shirtNumber,goalsScored,averageRating,position);
+		clubEmployees.add(new Player(name,id,salary,shirtNumber,goalsScored,averageRating,Position.valueOf(position.toUpperCase())));
 	}
 	
 	public void hirePrincipalCoach(int index, String name, String id, double salary, int yearsOfExperience,int numberOfTeamsInCharge,int championshipsWon){
-		team[index].addPrincipalCoach( name,  id,  salary,  yearsOfExperience, numberOfTeamsInCharge, championshipsWon);		
+		team[index].addPrincipalCoach( name,  id,  salary,  yearsOfExperience, numberOfTeamsInCharge, championshipsWon);	
+		clubEmployees.add(new Principal( name,  id,  salary,  yearsOfExperience, numberOfTeamsInCharge, championshipsWon));		
 	}
 	
 	public void hireAssistantCoach(int index, String name, String id, double salary, int yearsOfExperience,boolean hasBeenPlayer, String skill){
 		team[index].addAssistanCoach( name,  id,  salary,  yearsOfExperience, hasBeenPlayer,  skill);
+		clubEmployees.add(new Assistant(name,  id,  salary,  yearsOfExperience, hasBeenPlayer,Skill.valueOf(skill.toUpperCase())));
 	}
 	
 	public String showEmployee(){
@@ -185,6 +196,31 @@ public class Club implements ClubMethods{
 	
 	}
 	
+	public void fireClubEmployee(String id){
+		boolean fired=false;
+		for(int c=0;(c<clubEmployees.size()&&!fired); c++){
+			if(clubEmployees!=null && clubEmployees.get(c).getId().equals(id)){
+				clubEmployees.remove(c); 
+				team[0].fireEmployee(id);
+				team[1].fireEmployee(id);
+				fired=true;
+			}
+		}
+		
+	}
+	
+	
+	
+	public String showClubEmplyees(){
+		String print="";
+		print+="Empleados del club: \n";
+		for(int c=0;(c<clubEmployees.size() && !clubEmployees.isEmpty()); c++){
+			if(clubEmployees!=null)
+				print+="("+(c+1)+") "+clubEmployees.get(c).employeeToString(); 
+		}
+		return print;
+	}
+	
 	public void addLineUp(Team team){}
 	
 
@@ -195,6 +231,7 @@ public class Club implements ClubMethods{
 		print+="Nombre del club: "+name+"\n"+
 		"NIT"+nit+"\n"+
 		"Fecha de fundacion: "+creationDate+"\n";
+		print+=showClubEmplyees()+"\n";
 		print+=showEmployee()+"\n";
 		print+="\n Vestieres del equipo 1 \n";
 		for(int c=0;c<dressingRoom1.length;c++){

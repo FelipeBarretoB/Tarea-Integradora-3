@@ -34,12 +34,13 @@ public class Main{
 				"Menú principal, seleccione una opción\n" +
 				"(1) Para contratar un empleado \n" +
 				"(2) Para mostrar los equipos \n"+
-				"(3) Para para despedir un empleado\n"+
+				"(3) Para para despedir un empleado de un equipo\n"+
 				"(4) Para aplicar protocolos de bioseguridad \n" +
 				"(5) Para mostrar toda la información del club \n" + 
 				"(6) Para encontrar un empleado \n" +  
 				"(7) Para mostrar solo un equipo \n" +  
-				"(8)  \n" +  
+				"(8) Para despedir a un empleado del club \n" +  
+				"(9) Para mostrar los empleados del club \n" +  
 				"(0) Para salir"
 				);
 		option= sc.nextInt();
@@ -92,6 +93,16 @@ public class Main{
 			System.out.println("\n");
 			break;
 		case 8:
+			System.out.println("\n");
+			fireClubEmployeeInfo();
+			System.out.println("\n");
+			break;
+		case 9:
+			System.out.println("\n");
+			System.out.println(club.showClubEmplyees());
+			System.out.println("\n");
+			break;
+		case 10:
 			System.out.println("\n");
 		
 			System.out.println("\n");
@@ -276,6 +287,17 @@ public class Main{
 			System.out.println(club.showEmployee( index-1));
 		else
 			System.out.println("Este equipo no es valido"); 
+	}
+	
+	public void fireClubEmployeeInfo(){
+		System.out.println("Cual es la id del empleado?");
+		String id=sc.nextLine();
+		if(club.checkId(id)){
+			club.fireClubEmployee(id);
+		}else 
+			System.out.println("No existe ningun empleado con esta id");
+		
+		
 	}
 }
 	
