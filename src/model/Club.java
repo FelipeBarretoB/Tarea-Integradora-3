@@ -1,11 +1,15 @@
 package model;
 import java.util.ArrayList;
 public class Club implements ClubMethods{
-	
+	//The ArryList if the club's employees
 	private ArrayList <Employee> clubEmployees; 
+	//The name of the club
 	private String name;
+	//The NIT code of the club
 	private int nit;
+	//The date of the creation of the club
 	private String creationDate;
+	//The array of the teams in the club
 	private Team[] team;
 	private Player[][] dressingRoom1;
 	private Player[][] dressingRoom2;
@@ -14,7 +18,14 @@ public class Club implements ClubMethods{
 	private Coach[][] office;
 	private Coach[][] office2;
 
-	
+	/**
+	*The Overloaded constructor of the class Club
+	*Gives name a value
+	*Gives nit a value
+	*Gives creationDate a value 
+	*Gives two teams to the team array
+	*Initializes the clubEmployees ArrayList
+	*/
 	public Club(String name, int nit, String creationDate, String nameA, String nameB){
 		this.name=name;
 		this.nit=nit;
@@ -26,24 +37,25 @@ public class Club implements ClubMethods{
 		dressingRoom4=new Player[7][6];
 		office=new Coach[6][6];
 		office2=new Coach[6][6];
-		clubEmployees=new ArrayList <> ();
+		clubEmployees=new ArrayList <Employee> ();
 		
 	}
 	
+	@Override
 	public String printTeamNames(){
 		return "(1) "+team[0].getTeamName()+" \n"+
 		"(2) "+team[1].getTeamName()+"\n";
 	}
 
 	
-	
+	@Override
 	public void fireEmployee(String id){
 		team[0].fireEmployee(id);
 		team[1].fireEmployee(id);
 	}
 	
 	
-	
+	@Override
 	public void biosecurity(){
 		
 		int index=0;
@@ -125,7 +137,7 @@ public class Club implements ClubMethods{
 		
 	}          
 	
-	
+	@Override
 	public boolean checkId(String id){
 		boolean found= false;
 
@@ -137,6 +149,7 @@ public class Club implements ClubMethods{
 			
 	}
 	
+	@Override
 	public void hirePlayer(int index, String name, String id, double salary,int shirtNumber, int goalsScored, double averageRating, String position){
 		team[index].addPlayer(name,id,salary,shirtNumber,goalsScored,averageRating,position);
 		clubEmployees.add(new Player(name,id,salary,shirtNumber,goalsScored,averageRating,Position.valueOf(position.toUpperCase())));
@@ -152,6 +165,7 @@ public class Club implements ClubMethods{
 		clubEmployees.add(new Assistant(name,  id,  salary,  yearsOfExperience, hasBeenPlayer,Skill.valueOf(skill.toUpperCase())));
 	}
 	
+	@Override
 	public String showEmployee(){
 		String print="";
 		print+=team[0].teamToString()+"\n";
@@ -253,7 +267,7 @@ public class Club implements ClubMethods{
 	public String showOneRoom(int index){
 		String print="";
 		switch(index){
-		case 1
+		case 1:
 			for(int c=0;c<dressingRoom1.length;c++){
 			print+="\n";
 			for(int i=0;i<dressingRoom1[c].length;i++){
@@ -265,7 +279,7 @@ public class Club implements ClubMethods{
 			}
 		}
 			break;
-		case 2
+		case 2:
 			for(int c=0;c<dressingRoom2.length;c++){
 			print+="\n";
 			for(int i=0;i<dressingRoom2[c].length;i++){
@@ -277,7 +291,7 @@ public class Club implements ClubMethods{
 			}
 		}
 			break;
-		case 3 
+		case 3: 
 			for(int c=0;c<office.length;c++){
 			print+="\n";
 			for(int i=0;i<office[c].length;i++){
@@ -293,7 +307,7 @@ public class Club implements ClubMethods{
 			}
 		}
 			break; 
-		case 4 
+		case 4:
 			for(int c=0;c<dressingRoom3.length;c++){
 			print+="\n";
 			for(int i=0;i<dressingRoom3[c].length;i++){
@@ -305,7 +319,7 @@ public class Club implements ClubMethods{
 			}
 		}
 			break; 
-		case 5 
+		case 5: 
 			for(int c=0;c<dressingRoom4.length;c++){
 			print+="\n";
 			for(int i=0;i<dressingRoom4[c].length;i++){
@@ -317,7 +331,7 @@ public class Club implements ClubMethods{
 			}
 		}
 			break; 
-		case 6 
+		case 6:
 			for(int c=0;c<office2.length;c++){
 			print+="\n";
 			for(int i=0;i<office2[c].length;i++){
@@ -333,6 +347,10 @@ public class Club implements ClubMethods{
 			}
 		}
 			break;
+		default: 
+			print+="Escoja una opción valida";
+			break; 
+			
 		}
 			
 		return print;
