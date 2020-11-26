@@ -190,7 +190,7 @@ public class Club implements ClubMethods{
 		String print="";
 		if(team[0].findEmployee(id)!=null)
 			print=team[0].findEmployee(id).employeeToString();
-		else
+		else if(team[1].findEmployee(id)!=null)
 			print=team[1].findEmployee(id).employeeToString();
 		return print;
 	
@@ -221,10 +221,122 @@ public class Club implements ClubMethods{
 		return print;
 	}
 	
-	public void addLineUp(Team team){}
+	public boolean employeeHasTeam(String id){
+		boolean hasTeam=false;
+		if(findEmployee(id).equals("")){
+			hasTeam=true;
+		}
+		return hasTeam;
+	}
+	
+	public void addClubEmployeeToTeam(int index, String id){
+		boolean found=false;
+		for(int c=0;(c<clubEmployees.size()&&!found); c++){
+			if(clubEmployees!=null && clubEmployees.get(c).getId().equals(id)){
+				if(clubEmployees.get(c) instanceof Player && hasPlayerSpace(index) ){
+					team[index].addPlayer((Player)clubEmployees.get(c)); 
+					found=true;
+				}else if(clubEmployees.get(c) instanceof Assistant && hasCoachSpace(index)){
+					team[index].addAssistanCoach((Assistant)clubEmployees.get(c));
+					found=true;
+				}else if(clubEmployees.get(c) instanceof Principal && hasPrincipalSpace(index)){
+					team[index].addPrincipalCoach((Principal)clubEmployees.get(c));
+					found=true;
+				}
+			}
+		}
+	}
+	
+	public void addLineUp(int index){}
 	
 
-	
+	public String showOneRoom(int index){
+		String print="";
+		switch(index){
+		case 1
+			for(int c=0;c<dressingRoom1.length;c++){
+			print+="\n";
+			for(int i=0;i<dressingRoom1[c].length;i++){
+				if(dressingRoom1[c][i]==null){
+					print+="vacio   ";
+				}else{
+					print+=dressingRoom1[c][i].getName()+"   ";
+				}
+			}
+		}
+			break;
+		case 2
+			for(int c=0;c<dressingRoom2.length;c++){
+			print+="\n";
+			for(int i=0;i<dressingRoom2[c].length;i++){
+				if(dressingRoom2[c][i]==null){
+					print+="vacio   ";
+				}else{
+					print+=dressingRoom2[c][i].getName()+"   ";
+				}
+			}
+		}
+			break;
+		case 3 
+			for(int c=0;c<office.length;c++){
+			print+="\n";
+			for(int i=0;i<office[c].length;i++){
+				if(office[0][0]==null)
+					print+="vacio   ";
+				else if(c==0 && i==0)
+					print+=office[0][0].getName()+"   ";
+				else if(office[c][i]==null){
+					print+="vacio   ";
+				}else{
+					print+=office[c][i].getName()+"   ";
+				}
+			}
+		}
+			break; 
+		case 4 
+			for(int c=0;c<dressingRoom3.length;c++){
+			print+="\n";
+			for(int i=0;i<dressingRoom3[c].length;i++){
+				if(dressingRoom3[c][i]==null){
+					print+="vacio   ";
+				}else{
+					print+=dressingRoom3[c][i].getName()+"   ";
+				}
+			}
+		}
+			break; 
+		case 5 
+			for(int c=0;c<dressingRoom4.length;c++){
+			print+="\n";
+			for(int i=0;i<dressingRoom4[c].length;i++){
+				if(dressingRoom4[c][i]==null){
+					print+="vacio   ";
+				}else{
+					print+=dressingRoom4[c][i].getName()+"   ";
+				}
+			}
+		}
+			break; 
+		case 6 
+			for(int c=0;c<office2.length;c++){
+			print+="\n";
+			for(int i=0;i<office2[c].length;i++){
+				if(office2[0][0]==null)
+					print+="vacio   ";
+				else if(c==0 && i==0)
+					print+=office2[0][0].getName()+"   ";
+				else if(office2[c][i]==null){
+					print+="vacio   ";
+				}else{
+					print+=office2[c][i].getName()+"   ";
+				}
+			}
+		}
+			break;
+		}
+			
+		return print;
+	}
 	
 	public String showInfo(){
 		String print="";

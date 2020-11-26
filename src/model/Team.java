@@ -1,17 +1,18 @@
 package model;
+import java.util.ArrayList;
 
 public class Team{
 	public static final int MAXPLAYERS=25;
 	public static final int MAXCOACHES=3;
 	private String teamName;
-	private LineUp lineUp;
+	private ArrayList <LineUp> lineUp;
 	private Principal principal;
 	private Player[] player;
 	private Coach[] assistantCoach;
 	
 	public Team(String teamName){
 		this.teamName=teamName;
-		lineUp=new LineUp();
+		lineUp=new ArrayList<>();
 		player=new Player[25];
 		assistantCoach=new Coach[3];
 	}
@@ -124,8 +125,22 @@ public class Team{
 		}
 	}
 	
+	public void addPlayer(Player newPlayer){
+		boolean created=false;
+		for(int c=0;c<player.length&&!created;c++){
+			if(player[c]==null){
+				player[c]= newPlayer;
+				created=true;
+			}
+		}
+	}
+	
 	public void addPrincipalCoach(String name, String id, double salary, int yearsOfExperience,int numberOfTeamsInCharge,int championshipsWon){
 		principal = new Principal(name,id,salary,yearsOfExperience,numberOfTeamsInCharge,championshipsWon);
+	}
+	
+	public void addPrincipalCoach(Principal principal){
+		this.principal=principal;
 	}
 	
 	public void addAssistanCoach(String name, String id, double salary, int yearsOfExperience,boolean hasBeenPlayer, String skill){
@@ -137,6 +152,17 @@ public class Team{
 			}
 		}
 	}
+	
+	public void addAssistanCoach(Assistant assistant){
+		boolean created=false;
+		for(int c=0;c<assistantCoach.length &&!created;c++){
+			if(assistantCoach==null){
+				created=true;
+				assistantCoach[c]=assistant;
+			}
+		}
+	}
+	
 	
 	public String teamToString(){
 		String print= "Nombre del equipo: "+teamName+" \n";

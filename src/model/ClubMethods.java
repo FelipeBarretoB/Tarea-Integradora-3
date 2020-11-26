@@ -25,7 +25,7 @@ public interface ClubMethods{
 	
 	public void findEmployee(String id, int team);
 	
-	public void addLineUp(Team team);
+	public void addLineUp(int index);
 	
 	public String showInfo();
 	
