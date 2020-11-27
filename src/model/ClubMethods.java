@@ -160,7 +160,7 @@ public interface ClubMethods{
 	*<b>post:  </b>
 	*@return String, a String that holds all the information of all the employees in clubEmployees
 	*/
-	public String showClubEmplyees();
+	public String showClubEmployees();
 	
 	/**
 	*The method adds an employee from the clubEmployees ArrayList to a team  <br>

@@ -19,26 +19,51 @@ public class LineUp{
 	//4-4-1-1
 	//5-4-1
 	public void fillFormation(){
-		int index=0;
-		
-		if(((form.length()+1)/2)==4){
-			for(int i=formation.length-1; i<=0;i--){
-				if(i%2==0){
-					for(int y=0;y<formation[i].length;y++){
-						int playersInLine=(int)form.charAt(index);
-
-					}
-					index+=2;
-				}
-			}
+		int index=0; 
+		String[] num = form.split("-"); 
+		int lines= 10/num.length;
+		for(int c=9;c<=0; c-=lines){
+			fillLine( num, index, c );
+			index++;
 		}
-		
-		
 		
 	}
 	
-	public void fillLine(int row){
-		
+	public void fillLine(String[] num,int index,  int row ){
+		int lines = 7/Integer.parseInt(num[index]);
+		if(Integer.parseInt(num[0])%2==0){
+			int i=4; 
+			int y=2;
+			for(int c=0;c<Integer.parseInt(num[index]);c++){
+				formation[row][y]=1;
+				formation[row][i]=1;
+				i+=lines;
+				c-=lines;
+			}
+		}else{
+			int i=3; 
+			int y=3;
+			for(int c=0;c<Integer.parseInt(num[index]);c++){
+				formation[row][i]=1;
+				formation[row][y]=1;
+				i+=lines;
+				c-=lines;
+			}
+		}
 	}
+	
+	
+	public String printMatrix(){
+		String print="";
+		for(int c=0; c<formation.length;c++){
+			print+="\n";
+			for(int i=0; i<formation[c].length;i++){
+				print+=formation[c][i]+"   ";
+			}
+		}
+		return print; 
+	}
+	
+
 	
 }

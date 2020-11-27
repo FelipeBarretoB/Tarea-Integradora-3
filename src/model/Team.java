@@ -17,6 +17,7 @@ public class Team{
 	//Array that holds the assistant coachs of the team
 	private Coach[] assistantCoach;
 	
+	
 	/**
 	*The Overloaded constructor of the class Team
 	*Gives teamName a value
@@ -335,4 +336,26 @@ public class Team{
 		return MAXCOACHES;
 	}
 	
+	public boolean add10(String form){
+		String[] num= form.split("-");
+		int sum=0; 
+		for(int c=0; c< num.length; c++){
+			sum+=Integer.parseInt(num[c]);
+		}
+		return 10==sum; 
+	}
+	
+	public void addLineUp(String lineUp, String date, String tactics){
+		this.lineUp.add(new LineUp( date,  tactics));
+		this.lineUp.get(this.lineUp.size()-1).setForm( lineUp);
+		this.lineUp.get(this.lineUp.size()-1).fillFormation();
+	}
+	
+	public String printLineUp(){
+		String print="";
+		for(int c=0; c<lineUp.size();c++){
+			print+=lineUp.get(c).printMatrix();
+		}
+		return print;
+	}
 }

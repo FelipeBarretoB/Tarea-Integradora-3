@@ -101,7 +101,7 @@ public class Main{
 			break;
 		case 9:
 			System.out.println("\n");
-			System.out.println(club.showClubEmplyees());
+			System.out.println(club.showClubEmployees());
 			System.out.println("\n");
 			break;
 		case 10:

@@ -11,11 +11,17 @@ public class Club implements ClubMethods{
 	private String creationDate;
 	//The array of the teams in the club
 	private Team[] team;
+	//The first dressing room of the first team
 	private Player[][] dressingRoom1;
+	//The second dressing room of the first team
 	private Player[][] dressingRoom2;
+	//The first dressing room of the second team 
 	private Player[][] dressingRoom3;
+	//The second dressing room of the second team 
 	private Player[][] dressingRoom4;
+	//The office of the first team 
 	private Coach[][] office;
+	//The office of the second team 
 	private Coach[][] office2;
 
 	/**
@@ -236,7 +242,7 @@ public class Club implements ClubMethods{
 	
 	
 	@Override 
-	public String showClubEmplyees(){
+	public String showClubEmployees(){
 		String print="";
 		print+="Empleados del club: \n";
 		for(int c=0;(c<clubEmployees.size() && !clubEmployees.isEmpty()); c++){
@@ -376,7 +382,7 @@ public class Club implements ClubMethods{
 		print+="Nombre del club: "+name+"\n"+
 		"NIT"+nit+"\n"+
 		"Fecha de fundacion: "+creationDate+"\n";
-		print+=showClubEmplyees()+"\n";
+		print+=showClubEmployees()+"\n";
 		print+=showEmployee()+"\n";
 		print+="\n Vestieres del equipo 1 \n";
 		for(int c=0;c<dressingRoom1.length;c++){
