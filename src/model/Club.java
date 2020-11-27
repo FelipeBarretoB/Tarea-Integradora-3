@@ -25,6 +25,12 @@ public class Club implements ClubMethods{
 	*Gives creationDate a value 
 	*Gives two teams to the team array
 	*Initializes the clubEmployees ArrayList
+	*Initializes all 2d arrays
+	*@param name, the name of the club
+	*@param nit, the NIT code for the club
+	*@param creationDate, the creation date of the club
+	*@param nameA, name of the team in Team[0]
+	*@param nameB, name of the team in Team[1]
 	*/
 	public Club(String name, int nit, String creationDate, String nameA, String nameB){
 		this.name=name;
@@ -155,11 +161,12 @@ public class Club implements ClubMethods{
 		clubEmployees.add(new Player(name,id,salary,shirtNumber,goalsScored,averageRating,Position.valueOf(position.toUpperCase())));
 	}
 	
+	@Override
 	public void hirePrincipalCoach(int index, String name, String id, double salary, int yearsOfExperience,int numberOfTeamsInCharge,int championshipsWon){
 		team[index].addPrincipalCoach( name,  id,  salary,  yearsOfExperience, numberOfTeamsInCharge, championshipsWon);	
 		clubEmployees.add(new Principal( name,  id,  salary,  yearsOfExperience, numberOfTeamsInCharge, championshipsWon));		
 	}
-	
+	@Override
 	public void hireAssistantCoach(int index, String name, String id, double salary, int yearsOfExperience,boolean hasBeenPlayer, String skill){
 		team[index].addAssistanCoach( name,  id,  salary,  yearsOfExperience, hasBeenPlayer,  skill);
 		clubEmployees.add(new Assistant(name,  id,  salary,  yearsOfExperience, hasBeenPlayer,Skill.valueOf(skill.toUpperCase())));
@@ -175,31 +182,34 @@ public class Club implements ClubMethods{
 		return print;
 	}
 	
+	@Override
 	public String showEmployee(int index){
 		String print="";
 		print+=team[index].teamToString()+"\n";
 		return print;
 	}
 
-	
+	@Override 
 	public boolean hasPlayerSpace(int index){
 		return team[index].hasPlayerSpace();
-		
-		
 	}
 	
+	@Override 
 	public boolean hasCoachSpace(int index){
 		return team[index].hasAssistantSpace();		
 	}
 	
+	@Override 
 	public boolean hasPrincipalSpace(int index){
 		return team[index].hasPrincipalSpace();
 	}
 	
+	@Override 
 	public void findEmployee(String id, int index){
 		team[index].fireEmployee(id);
 	}
 	
+	@Override 
 	public String findEmployee(String id){
 		String print="";
 		if(team[0].findEmployee(id)!=null)
@@ -210,6 +220,7 @@ public class Club implements ClubMethods{
 	
 	}
 	
+	@Override 
 	public void fireClubEmployee(String id){
 		boolean fired=false;
 		for(int c=0;(c<clubEmployees.size()&&!fired); c++){
@@ -224,7 +235,7 @@ public class Club implements ClubMethods{
 	}
 	
 	
-	
+	@Override 
 	public String showClubEmplyees(){
 		String print="";
 		print+="Empleados del club: \n";
@@ -235,6 +246,7 @@ public class Club implements ClubMethods{
 		return print;
 	}
 	
+	@Override
 	public boolean employeeHasTeam(String id){
 		boolean hasTeam=false;
 		if(findEmployee(id).equals("")){
@@ -243,6 +255,7 @@ public class Club implements ClubMethods{
 		return hasTeam;
 	}
 	
+	@Override 
 	public void addClubEmployeeToTeam(int index, String id){
 		boolean found=false;
 		for(int c=0;(c<clubEmployees.size()&&!found); c++){
@@ -261,9 +274,10 @@ public class Club implements ClubMethods{
 		}
 	}
 	
+	@Override
 	public void addLineUp(int index){}
 	
-
+	@Override
 	public String showOneRoom(int index){
 		String print="";
 		switch(index){
@@ -356,6 +370,7 @@ public class Club implements ClubMethods{
 		return print;
 	}
 	
+	@Override
 	public String showInfo(){
 		String print="";
 		print+="Nombre del club: "+name+"\n"+
@@ -439,9 +454,6 @@ public class Club implements ClubMethods{
 				}
 			}
 		}
-		
-		
-		
 		return print;
 	}
 	
