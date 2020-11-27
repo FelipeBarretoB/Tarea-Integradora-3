@@ -1,11 +1,26 @@
 package model;
 
 public class Player extends Employee implements Profitable {
+	//The number on shirt of the player
 	private int shirtNumber;
+	//The number of goals socred by the player 
 	private int goalsScored;
+	//The average rating of the player 
 	private double averageRating;
+	//The position of the player 
 	private Position position;
 	
+	/**
+	*The Overloaded constructor of the class Player 
+	*Uses the constructor of the class super
+	*@param name, the name of the employee
+	*@param id, the id of the employee
+	*@param salary, the salary of the employee
+	*@param shirtNumber, the number on the shirt of the player 
+	*@param goalsScored, the number of goals scored by the player 
+	*@param averageRating, the average rating of the player 
+	*@param position, the position of the player 
+	*/
 	public Player(String name, String id, double salary,int shirtNumber, int goalsScored, double averageRating, Position position){
 		super(name,id,salary);
 		this.shirtNumber=shirtNumber;
@@ -14,6 +29,7 @@ public class Player extends Employee implements Profitable {
 		this.position=position;
 	}
 	
+	@Override 
 	public double calculateMarketPrice(){
 		double price=0.0;
 		if(position.name().equals("GOALKEEPER"))
@@ -27,6 +43,7 @@ public class Player extends Employee implements Profitable {
 		return price;
 	}
 	
+	@Override 
 	public double calculateStars(){
 		double stars=0.0;
 		if(position.name().equals("GOALKEEPER"))

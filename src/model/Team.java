@@ -18,7 +18,7 @@ public class Team{
 	private Coach[] assistantCoach;
 	
 	/**
-	*The Overloaded constructor of the class Club
+	*The Overloaded constructor of the class Team
 	*Gives teamName a value
 	*Initializes lineUp ArrayList
 	*Initializes the player array
