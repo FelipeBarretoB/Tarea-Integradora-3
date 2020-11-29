@@ -13,16 +13,10 @@ public class Club implements ClubMethods{
 	private Team[] team;
 	//The first dressing room of the first team
 	private Player[][] dressingRoom1;
-	//The second dressing room of the first team
-	private Player[][] dressingRoom2;
 	//The first dressing room of the second team 
-	private Player[][] dressingRoom3;
-	//The second dressing room of the second team 
-	private Player[][] dressingRoom4;
-	//The office of the first team 
+	private Player[][] dressingRoom2;
+	//The offices of the club
 	private Coach[][] office;
-	//The office of the second team 
-	private Coach[][] office2;
 
 	/**
 	*The Overloaded constructor of the class Club
@@ -45,10 +39,7 @@ public class Club implements ClubMethods{
 		team= new Team[] {new Team(nameA),new Team(nameB)};
 		dressingRoom1=new Player[7][7];
 		dressingRoom2=new Player[7][6];
-		dressingRoom3=new Player[7][7];
-		dressingRoom4=new Player[7][6];
 		office=new Coach[6][6];
-		office2=new Coach[6][6];
 		clubEmployees=new ArrayList <Employee> ();
 		
 	}
@@ -83,20 +74,12 @@ public class Club implements ClubMethods{
 			}
 		}
 		
-		for(int c=0;c<dressingRoom2.length && index<team[0].getMAXPLAYERS() ;c++){
-			for(int i=0;i<dressingRoom2[c].length && index<team[0].getMAXPLAYERS() ;i++){
-				if(team[0].getPlayer(index)==null && (c%2==0 && i%2==0)){
-					dressingRoom2[c][i]=null;
-					index++;	
-				}else if(c%2==0 && i%2==0){
-					dressingRoom2[c][i]=team[0].getPlayer(index);
-					index++;
-				}
-			}
-		}
+	
 		index=0;
 		if(team[0].getPrincipal()!=null)
 			office[0][0]=team[0].getPrincipal();
+		else
+			office[0][0]=null;
 		for(int c=1;c<office.length && index<team[0].getMAXCOACHES() ;c++){
 			for(int i=1;i<office[c].length  && index<team[0].getMAXCOACHES() ;i++){
 				if(team[0].getAssistant(index)==null && (c%2==0 && i%2==0)){
@@ -110,38 +93,30 @@ public class Club implements ClubMethods{
 		}
 		
 		index=0;
-		for(int c=0;c<dressingRoom3.length && index<team[1].getMAXPLAYERS() ;c++){
-			for(int i=0;i<dressingRoom3[c].length && index<team[1].getMAXPLAYERS();i++){
+		for(int c=0;c<dressingRoom2.length && index<team[1].getMAXPLAYERS() ;c++){
+			for(int i=0;i<dressingRoom2[c].length && index<team[1].getMAXPLAYERS();i++){
 				if(team[1].getPlayer(index)==null && (c%2==0 && i%2==0)){
-					dressingRoom3[c][i]=null;
+					dressingRoom2[c][i]=null;
 					index++;
 				}else if(c%2==0 && i%2==0){
-					dressingRoom3[c][i]=team[1].getPlayer(index);
+					dressingRoom2[c][i]=team[1].getPlayer(index);
 					index++;
 				}
 			}
 		}
-		for(int c=0;c<dressingRoom4.length && index<team[1].getMAXPLAYERS() ;c++){
-			for(int i=0;i<dressingRoom4[c].length && index<team[1].getMAXPLAYERS() ;i++){
-				if(team[1].getPlayer(index)==null && (c%2==0 && i%2==0)){
-					dressingRoom4[c][i]=null;
-					index++;
-			}else if(c%2==0 && i%2==0){
-				dressingRoom4[c][i]=team[1].getPlayer(index);
-				index++;
-				}
-			}
-		}
+		
 		index=0;
 		if(team[1].getPrincipal()!=null)
-			office2[0][0]=team[1].getPrincipal();
-		for(int c=1;c<office2.length && index<team[1].getMAXCOACHES() ;c++){
-			for(int i=1;i<office2[c].length && index<team[1].getMAXCOACHES() ;i++){
+			office[2][2]=team[1].getPrincipal();
+		else
+			office[2][2]=null;
+		for(int c=2;c<office.length && index<team[1].getMAXCOACHES() ;c++){
+			for(int i=2;i<office[c].length && index<team[1].getMAXCOACHES() ;i++){
 				if(team[1].getAssistant(index)==null&& (c%2==0 && i%2==0)){
-					dressingRoom4[c][i]=null;
+					office[c][i]=null;
 					index++;
 				}else if(c%2==0 && i%2==0){
-				office2[c][i]=team[1].getAssistant(index);
+				office[c][i]=team[1].getAssistant(index);
 				index++;
 				}
 			}
@@ -231,7 +206,7 @@ public class Club implements ClubMethods{
 		boolean fired=false;
 		for(int c=0;(c<clubEmployees.size()&&!fired); c++){
 			if(clubEmployees!=null && clubEmployees.get(c).getId().equals(id)){
-				clubEmployees.remove(c); 
+				clubEmployees.get(c).inactive(); 
 				team[0].fireEmployee(id);
 				team[1].fireEmployee(id);
 				fired=true;
@@ -280,9 +255,35 @@ public class Club implements ClubMethods{
 		}
 	}
 	
-	@Override
-	public void addLineUp(int index){}
+	@Override 
+	public boolean activeEmployee(String id){
+		boolean active=false;
+		boolean found=false; 
+		for(int c=0;(c<clubEmployees.size()&&!found); c++){
+			if(clubEmployees!=null && clubEmployees.get(c).getId().equals(id)){
+				active=clubEmployees.get(c).getActive();
+				found=true;
+			}
+		}
+		return active; 
+	}
 	
+	@Override
+	public boolean addsTen(int index, String lineUp){
+		return team[index].add10(lineUp);
+	}
+	
+	@Override
+	public void addLineUp(int index, String lineUp, String date, String tactics){
+		team[index].addLineUp( lineUp,  date,  tactics);
+	}
+	
+	public String showLineUp(int index){
+		return team[index].printLineUp();
+		
+	}
+	
+	/*
 	@Override
 	public String showOneRoom(int index){
 		String print="";
@@ -375,6 +376,7 @@ public class Club implements ClubMethods{
 			
 		return print;
 	}
+	*/
 	
 	@Override
 	public String showInfo(){
@@ -395,18 +397,8 @@ public class Club implements ClubMethods{
 				}
 			}
 		}
-		print+="\n Segundo vestier del equipo 1 \n";
-		for(int c=0;c<dressingRoom2.length;c++){
-			print+="\n";
-			for(int i=0;i<dressingRoom2[c].length;i++){
-				if(dressingRoom2[c][i]==null){
-					print+="vacio   ";
-				}else{
-					print+=dressingRoom2[c][i].getName()+"   ";
-				}
-			}
-		}
-		print+="\n Officina de equipo 1 \n";
+		
+		print+="\n Officina del club \n";
 		for(int c=0;c<office.length;c++){
 			print+="\n";
 			for(int i=0;i<office[c].length;i++){
@@ -423,43 +415,17 @@ public class Club implements ClubMethods{
 		}
 		
 		print+="\n Vestieres del equipo 2 \n";
-		for(int c=0;c<dressingRoom3.length;c++){
+		for(int c=0;c<dressingRoom2.length;c++){
 			print+="\n";
-			for(int i=0;i<dressingRoom3[c].length;i++){
-				if(dressingRoom3[c][i]==null){
+			for(int i=0;i<dressingRoom2[c].length;i++){
+				if(dressingRoom2[c][i]==null){
 					print+="vacio   ";
 				}else{
-					print+=dressingRoom3[c][i].getName()+"   ";
+					print+=dressingRoom2[c][i].getName()+"   ";
 				}
 			}
 		}
-		print+="\n Segundo vestier del equipo 2 \n";
-		for(int c=0;c<dressingRoom4.length;c++){
-			print+="\n";
-			for(int i=0;i<dressingRoom4[c].length;i++){
-				if(dressingRoom4[c][i]==null){
-					print+="vacio   ";
-				}else{
-					print+=dressingRoom4[c][i].getName()+"   ";
-				}
-			}
-		}
-		print+="\n Officina de equipo 2 \n";
 		
-		for(int c=0;c<office2.length;c++){
-			print+="\n";
-			for(int i=0;i<office2[c].length;i++){
-				if(office2[0][0]==null)
-					print+="vacio   ";
-				else if(c==0 && i==0)
-					print+=office2[0][0].getName()+"   ";
-				else if(office2[c][i]==null){
-					print+="vacio   ";
-				}else{
-					print+=office2[c][i].getName()+"   ";
-				}
-			}
-		}
 		return print;
 	}
 	

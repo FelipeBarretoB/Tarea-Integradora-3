@@ -7,6 +7,8 @@ public abstract class Employee{
 	private String id;
 	//The salary of the employee
 	private double salary;
+	//The status of the employee
+	private boolean active;
 	
 	/**
 	*The method returns the value of the field id <br>
@@ -51,7 +53,16 @@ public abstract class Employee{
 		this.name=name;
 		this.id=id;
 		this.salary=salary;
+		active=true;
 		
+	}
+	
+	public void inactive(){
+		active=false;
+	}
+	
+	public boolean getActive(){
+		return active;
 	}
 	
 	/**
@@ -63,7 +74,8 @@ public abstract class Employee{
 	public String employeeToString(){
 		return "Nombre: "+name+" \n"+
 		"ID: "+id+"\n"+
-		"Salario: "+salary+"\n";
+		"Salario: "+salary+"\n"+
+		"Esta activo: "+active+"\n";
 	}
 	
 }

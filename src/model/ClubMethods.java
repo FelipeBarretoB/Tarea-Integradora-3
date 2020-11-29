@@ -19,8 +19,8 @@ public interface ClubMethods{
 	public void fireEmployee(String id);
 	
 	/**
-	*The method  <br>
-    *<b>pre:  </b> 
+	*The method fills the dressing rooms and offices with the biosecurity protocol <br>
+    *<b>pre: the creation of all dressing rooms and offices </b> 
 	*<b>post:  </b>
 	*/
 	public void biosecurity();
@@ -181,9 +181,14 @@ public interface ClubMethods{
 	public boolean employeeHasTeam(String id);
 	
 	
-	public void addLineUp(int index);
 	
-	public String showOneRoom(int index);
+	public boolean activeEmployee(String id);
+	
+	public boolean addsTen(int index, String lineUp);
+	
+	public void addLineUp(int index,String lineUp, String date, String tactics);
+	
+	//public String showOneRoom(int index);
 	
 	/**
 	*The method returns a String with the information of all the club  <br>

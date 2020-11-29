@@ -42,7 +42,8 @@ public class Main{
 				"(8) Para despedir a un empleado del club \n" +  
 				"(9) Para mostrar los empleados del club \n" +  
 				"(10) Para agregar un empleado del club a un equipo \n" +  
-				"(11) Para mostrar \n" +  
+				"(11) Para añadir una alineacion \n" +  
+				"(12) Para mostrar las alineaciones de un equipo \n" +  
 				"(0) Para salir"
 				);
 		option= sc.nextInt();
@@ -107,6 +108,16 @@ public class Main{
 		case 10:
 			System.out.println("\n");
 			addClubEmployeeToTeamInfo();
+			System.out.println("\n");
+			break;
+		case 11:
+			System.out.println("\n");
+			addLineUpInfo();
+			System.out.println("\n");
+			break;
+		case 12:
+			System.out.println("\n");
+			showLineUpInfo();
 			System.out.println("\n");
 			break;
 		default:
@@ -309,14 +320,52 @@ public class Main{
 			System.out.println("Cual es la id del empleado");
 			String id=sc.nextLine();
 			if(club.checkId(id)){
-				if(club.employeeHasTeam(id))
-					club.addClubEmployeeToTeam(index-1, id);
-				else
-					System.out.println("El empleado ya tiene equipo"); 
+				if(club.activeEmployee( id)){
+					if(club.employeeHasTeam(id))
+						club.addClubEmployeeToTeam(index-1, id);
+					else
+						System.out.println("El empleado ya tiene equipo"); 
+				}else 
+					System.out.println("Este empleado ya no esta activo");
 			}else
 				System.out.println("No existe ningun empleado con esta id");
 		}else
 			System.out.println("Este equipo no es valido");
+	}
+	
+	public void addLineUpInfo(){
+		System.out.println("A que equipo quiere añadir la alineacion?");
+		System.out.println(club.printTeamNames());
+		int index=sc.nextInt();
+		sc.nextLine();
+		if(index-1<=1){
+			System.out.println("Cual es la tatica de la alineacion?");
+			String tactics=sc.nextLine();
+			System.out.println("Cual es la fecha de esta alineacion? (En el formato dd/mm/aaaa)");
+			String date=sc.nextLine();
+			System.out.println("Cual es la formación (de la forma n-n-n-n...-n)");
+			String lineUp=sc.nextLine();
+			if(club.addsTen( index-1,  lineUp))
+				club.addLineUp( index-1,  lineUp,  date,  tactics);
+			else
+				System.out.print("La formación debe sumar 10");
+		}else
+			System.out.println("Este equipo no es valido");
+	}
+	
+	public void showLineUpInfo(){
+		System.out.println("A que equipo quiere añadir la alineacion?");
+		System.out.println(club.printTeamNames());
+		int index=sc.nextInt();
+		sc.nextLine();
+		if(index-1<=1){
+			System.out.println(club.showLineUp(index-1));
+			
+			
+		}else
+			System.out.println("Este equipo no es valido");
+		
+		
 	}
 	
 }
