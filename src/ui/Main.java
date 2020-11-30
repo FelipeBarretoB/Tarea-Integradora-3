@@ -2,12 +2,18 @@ package ui;
 import java.util.Scanner;
 import model.Club;
 public class Main{
+	//The Scanner that will be used for the user's input 
 	private Scanner sc;
+	//The club that is going to be consulted 
 	private Club club;
 	
+	/**
+	*default constructor of the class Main
+	*the initiation of the Scanner and Club object
+	*/
 	public Main(){
 		sc= new Scanner(System.in);
-		club=new Club("SuperClub",12341421,"20/03/2000","Equipo 1","Equipo 2");
+		club=new Club("SuperClub",12341421,"20/03/2000","Equipo A","Equipo B");
 	}
 	
 	public static void main(String [] args){
@@ -23,7 +29,12 @@ public class Main{
 		
 	}
 	
-	
+	/**
+	*The method prints a menu<br>
+    *<b>pre:  </b> 
+	*<b>post: </b>
+	*@return int, the option the user selected 
+	*/
 	public int showMenu() {
 		
 		int option=0;
@@ -50,7 +61,12 @@ public class Main{
 		sc.nextLine();
 		return option;
 	}
-	
+	/**
+	*The method receives an int and uses it in a switch<br>
+    *<b>pre: the creation of the methods: showHireMenu(), showEmployee(), fireEmployeeInfo(), biosecurity(), showInfo(), findEmployeeInfo(), showClubEmployees(), addClubEmployeeToTeamInfo(), addLineUpInfo(), and showLineUpInfo() </b> 
+	*<b>post: </b>
+	*@param operation, the option the user selected 
+	*/
 	public void executeOperation(int operation) {
 		
 		switch(operation) {
@@ -126,7 +142,11 @@ public class Main{
 		}
 	}
 	
-	
+	/**
+	*The method prints a menu<br>
+    *<b>pre: The creation of the methods hirePlayerInfo(), hirePrincipalCoachInfo(), hireAssistantInfo() </b> 
+	*<b>post: </b>
+	*/
 	public void showHireMenu(){
 		int operation=0;
 
@@ -168,6 +188,11 @@ public class Main{
 		}
 	}
 	
+	/**
+	*The method aks the user for the parameters for the method hirePlayer from the class Club<br>
+    *<b>pre:The creation of the methods checkId(), hasPlayerSpace() and hirePlayer()  </b> 
+	*<b>post: </b>
+	*/
 	public void hirePlayerInfo(){
 		System.out.println("A cual equipo le quieres añadir un jugador?");
 		System.out.println(club.printTeamNames());
@@ -204,9 +229,13 @@ public class Main{
 		
 	}
 		
+		
+	/**
+	*The method aks the user for the parameters for the method hirePrincipalCoach from the class Club<br>
+    *<b>pre:The creation of the methods checkId(), printTeamNames(), hasPlayerSpace() and hirePrincipalCoach()  </b> 
+	*<b>post: </b>
+	*/	
 	public void hirePrincipalCoachInfo(){
-		
-		
 		System.out.println("A cual equipo le quieres añadir un entrenador principal?");
 		System.out.println(club.printTeamNames());
 		int index=sc.nextInt();
@@ -239,7 +268,11 @@ public class Main{
 			System.out.println("Este equipo no es valido"); 
 	}
 		
-		
+	/**
+	*The method aks the user for the parameters for the method hireAssistantCoach from the class Club<br>
+    *<b>pre:The creation of the methods checkId(), printTeamNames(), hasPlayerSpace() and hireAssistantCoach()  </b> 
+	*<b>post: </b>
+	*/		
 	public void hireAssistantInfo(){
 		System.out.println("A cual equipo le quieres añadir un entrenador asistente?");
 		System.out.println(club.printTeamNames());
@@ -273,6 +306,11 @@ public class Main{
 		
 	}
 	
+	/**
+	*The method aks the user for the parameters for the method fireEmployee from the class Club<br>
+    *<b>pre:The creation of the methods checkId() and fireEmployee()  </b> 
+	*<b>post: </b>
+	*/		
 	public void fireEmployeeInfo(){
 		System.out.println("Cual es la id del empleado?");
 		String id=sc.nextLine();
@@ -282,6 +320,11 @@ public class Main{
 			System.out.println("No existe ningun empleado con esta id");
 	}
 	
+	/**
+	*The method aks the user for the parameters for the method findEmployee from the class Club<br>
+    *<b>pre:The creation of the methods checkId() and findEmployee()  </b> 
+	*<b>post: </b>
+	*/	
 	public void findEmployeeInfo(){
 		System.out.println("Cual es la id del empleado?");
 		String id=sc.nextLine();
@@ -292,6 +335,11 @@ public class Main{
 		
 	}
 	
+	/**
+	*The method aks the user for the parameters for the method showEmployee from the class Club<br>
+    *<b>pre:The creation of the methods printTeamNames() and showEmployee()  </b> 
+	*<b>post: </b>
+	*/	
 	public void showTeamInfo(){
 		System.out.println(club.printTeamNames());
 		int index=sc.nextInt();
@@ -302,6 +350,11 @@ public class Main{
 			System.out.println("Este equipo no es valido"); 
 	}
 	
+	/**
+	*The method aks the user for the parameters for the method fireClubEmployee from the class Club<br>
+    *<b>pre:The creation of the methods checkId() and fireClubEmployee()  </b> 
+	*<b>post: </b>
+	*/	
 	public void fireClubEmployeeInfo(){
 		System.out.println("Cual es la id del empleado?");
 		String id=sc.nextLine();
@@ -311,6 +364,11 @@ public class Main{
 			System.out.println("No existe ningun empleado con esta id");
 	}
 	
+	/**
+	*The method aks the user for the parameters for the method addClubEmployeeToTeam from the class Club<br>
+    *<b>pre:The creation of the methods printTeamNames(), activeEmployee(), employeeHasTeam(),checkId() and addClubEmployeeToTeam()  </b> 
+	*<b>post: </b>
+	*/	
 	public void addClubEmployeeToTeamInfo(){
 		System.out.println("A que equipo quiere añadir el empleado?");
 		System.out.println(club.printTeamNames());
@@ -333,6 +391,11 @@ public class Main{
 			System.out.println("Este equipo no es valido");
 	}
 	
+	/**
+	*The method aks the user for the parameters for the method addLineUp from the class Club<br>
+    *<b>pre:The creation of the methods addsTen(), printTeamNames and addLineUp()  </b> 
+	*<b>post: </b>
+	*/	
 	public void addLineUpInfo(){
 		System.out.println("A que equipo quiere añadir la alineacion?");
 		System.out.println(club.printTeamNames());
@@ -353,6 +416,11 @@ public class Main{
 			System.out.println("Este equipo no es valido");
 	}
 	
+	/**
+	*The method aks the user for the parameters for the method showLineUp from the class Club<br>
+    *<b>pre:The creation of the methods printTeamNames() and showLineUp()  </b> 
+	*<b>post: </b>
+	*/	
 	public void showLineUpInfo(){
 		System.out.println("A que equipo quiere añadir la alineacion?");
 		System.out.println(club.printTeamNames());

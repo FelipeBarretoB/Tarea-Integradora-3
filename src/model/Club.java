@@ -278,105 +278,12 @@ public class Club implements ClubMethods{
 		team[index].addLineUp( lineUp,  date,  tactics);
 	}
 	
+	@Override
 	public String showLineUp(int index){
 		return team[index].printLineUp();
 		
 	}
 	
-	/*
-	@Override
-	public String showOneRoom(int index){
-		String print="";
-		switch(index){
-		case 1:
-			for(int c=0;c<dressingRoom1.length;c++){
-			print+="\n";
-			for(int i=0;i<dressingRoom1[c].length;i++){
-				if(dressingRoom1[c][i]==null){
-					print+="vacio   ";
-				}else{
-					print+=dressingRoom1[c][i].getName()+"   ";
-				}
-			}
-		}
-			break;
-		case 2:
-			for(int c=0;c<dressingRoom2.length;c++){
-			print+="\n";
-			for(int i=0;i<dressingRoom2[c].length;i++){
-				if(dressingRoom2[c][i]==null){
-					print+="vacio   ";
-				}else{
-					print+=dressingRoom2[c][i].getName()+"   ";
-				}
-			}
-		}
-			break;
-		case 3: 
-			for(int c=0;c<office.length;c++){
-			print+="\n";
-			for(int i=0;i<office[c].length;i++){
-				if(office[0][0]==null)
-					print+="vacio   ";
-				else if(c==0 && i==0)
-					print+=office[0][0].getName()+"   ";
-				else if(office[c][i]==null){
-					print+="vacio   ";
-				}else{
-					print+=office[c][i].getName()+"   ";
-				}
-			}
-		}
-			break; 
-		case 4:
-			for(int c=0;c<dressingRoom3.length;c++){
-			print+="\n";
-			for(int i=0;i<dressingRoom3[c].length;i++){
-				if(dressingRoom3[c][i]==null){
-					print+="vacio   ";
-				}else{
-					print+=dressingRoom3[c][i].getName()+"   ";
-				}
-			}
-		}
-			break; 
-		case 5: 
-			for(int c=0;c<dressingRoom4.length;c++){
-			print+="\n";
-			for(int i=0;i<dressingRoom4[c].length;i++){
-				if(dressingRoom4[c][i]==null){
-					print+="vacio   ";
-				}else{
-					print+=dressingRoom4[c][i].getName()+"   ";
-				}
-			}
-		}
-			break; 
-		case 6:
-			for(int c=0;c<office2.length;c++){
-			print+="\n";
-			for(int i=0;i<office2[c].length;i++){
-				if(office2[0][0]==null)
-					print+="vacio   ";
-				else if(c==0 && i==0)
-					print+=office2[0][0].getName()+"   ";
-				else if(office2[c][i]==null){
-					print+="vacio   ";
-				}else{
-					print+=office2[c][i].getName()+"   ";
-				}
-			}
-		}
-			break;
-		default: 
-			print+="Escoja una opción valida";
-			break; 
-			
-		}
-			
-		return print;
-	}
-	*/
 	
 	@Override
 	public String showInfo(){
@@ -386,7 +293,7 @@ public class Club implements ClubMethods{
 		"Fecha de fundacion: "+creationDate+"\n";
 		print+=showClubEmployees()+"\n";
 		print+=showEmployee()+"\n";
-		print+="\n Vestieres del equipo 1 \n";
+		print+="\n Vestieres del equipo A \n";
 		for(int c=0;c<dressingRoom1.length;c++){
 			print+="\n";
 			for(int i=0;i<dressingRoom1[c].length;i++){
@@ -397,6 +304,9 @@ public class Club implements ClubMethods{
 				}
 			}
 		}
+		print+="\n Alineaciones del equipo A \n"+
+		showLineUp(0)+"\n";
+		
 		
 		print+="\n Officina del club \n";
 		for(int c=0;c<office.length;c++){
@@ -414,7 +324,7 @@ public class Club implements ClubMethods{
 			}
 		}
 		
-		print+="\n Vestieres del equipo 2 \n";
+		print+="\n Vestieres del equipo B \n";
 		for(int c=0;c<dressingRoom2.length;c++){
 			print+="\n";
 			for(int i=0;i<dressingRoom2[c].length;i++){
@@ -425,6 +335,8 @@ public class Club implements ClubMethods{
 				}
 			}
 		}
+		print+="\n Alineaciones del equipo B \n"+
+		showLineUp(1)+"\n";
 		
 		return print;
 	}

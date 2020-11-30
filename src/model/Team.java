@@ -336,6 +336,13 @@ public class Team{
 		return MAXCOACHES;
 	}
 	
+	/**
+	*The method returns true if the line up adds 10 <br>
+    *<b>pre:  </b> 
+	*<b>post:  </b>
+	*@param form, the line up that the user has given
+	*@return boolean, only retuns true when the line up adds to 10
+	*/
 	public boolean add10(String form){
 		String[] num= form.split("-");
 		int sum=0; 
@@ -345,12 +352,26 @@ public class Team{
 		return 10==sum; 
 	}
 	
+	/**
+	*The method adds a line up to the lineUp ArrayList <br>
+    *<b>pre:  The creation of the lineUp ArrayList and the existance of the enum Tactics</b> 
+	*<b>post:  Adds an lineUp object to the lineUp ArrayList</b>
+	*@param lineUp, the lineUp the user has added 
+	*@param date, the date of the line up 
+	*@param tactics, the tactic of the lineUp
+	*/
 	public void addLineUp(String lineUp, String date, String tactics){
 		this.lineUp.add(new LineUp( date,  tactics));
 		this.lineUp.get(this.lineUp.size()-1).setForm( lineUp);
 		this.lineUp.get(this.lineUp.size()-1).fillFormation();
 	}
 	
+	/**
+	*The method prints all the line ups of the in the lineUp ArrayList <br>
+    *<b>pre:  The creation of the lineUp ArrayList and the existance of the method printMatrix from the class LineUp</b> 
+	*<b>post:  </b>
+	*@return String, a String with all the line ups
+	*/
 	public String printLineUp(){
 		String print="";
 		for(int c=0; c<lineUp.size();c++){

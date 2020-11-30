@@ -181,14 +181,44 @@ public interface ClubMethods{
 	public boolean employeeHasTeam(String id);
 	
 	
-	
+	/**
+	*The method checks if an employee has a team  <br>
+    *<b>pre: The creation of the clubEmployees ArrayList, and the team array </b> 
+	*<b>post:  </b>
+	*@param id, the id of the employee
+	*@return boolean, returns true if the employee has space, false if it hasn't
+	*/
 	public boolean activeEmployee(String id);
 	
+	/**
+	*The method checks if the lineUp that the user gaves adds 10  <br>
+    *<b>pre: The method add10 from the class Team </b> 
+	*<b>post:  </b>
+	*@param index, the index of the team with the lineUp
+	*@param lineUp, the line up the user has given
+	*@return boolean, only returns true if the lineUp adds 10
+	*/
 	public boolean addsTen(int index, String lineUp);
 	
+	/**
+	*The method adds a lineUp to a team <br>
+    *<b>pre: The existance of the line up Arraylist in the class Team and the method addlineUp</b> 
+	*<b>post: Adds an object to the line up ArrayList in the class Team </b>
+	*@param index, the index of the team with the line up
+	*@param lineUp, the line up the user has given
+	*@param date, the date of the line up
+	*@param tactics, the tactic of the line up. Later, this value gets turned into an Enum from the class Tactics
+	*/
 	public void addLineUp(int index,String lineUp, String date, String tactics);
 	
-	//public String showOneRoom(int index);
+	/**
+	*The method returns a String with all the team's line ups <br>
+    *<b>pre: The existance of the line up Arraylist in the class Team, and the method printLineUp </b> 
+	*<b>post:  </b>
+	*@param index, the index of the team with the line up
+	*@return String, a String with all the line ups of a team 
+	*/
+	public String showLineUp(int index);
 	
 	/**
 	*The method returns a String with the information of all the club  <br>

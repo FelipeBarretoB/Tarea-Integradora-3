@@ -45,6 +45,7 @@ public abstract class Employee{
 	*Gives name a value
 	*Gives id a value
 	*Gives salary a value
+	*Gives active a boolean value of true 
 	*@param name, the name of the employee
 	*@param id, the id of the employee
 	*@param salary, the salary of the employee
@@ -57,10 +58,21 @@ public abstract class Employee{
 		
 	}
 	
+	/**
+	*The method changes the value of active to flase <br>
+    *<b>pre:   </b> 
+	*<b>post:  </b>
+	*/
 	public void inactive(){
 		active=false;
 	}
 	
+	/**
+	*The method returns the value of active <br>
+    *<b>pre:   </b> 
+	*<b>post:  </b>
+	*@return boolean, the value of the field active 
+	*/
 	public boolean getActive(){
 		return active;
 	}
